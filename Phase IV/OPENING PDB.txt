@@ -1,0 +1,4 @@
+ALTER PLUGGABLE DATABASE GRP_B_27393_Fathiri_Agriculture_Management_System_db OPEN;
+ 
+
+OPENING PDB
