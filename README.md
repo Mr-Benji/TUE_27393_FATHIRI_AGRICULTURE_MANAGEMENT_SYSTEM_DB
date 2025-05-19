@@ -2,7 +2,7 @@
 
 ## Phase IV: PDB CREATION
 
-![Alt text](OEM.png)
+![alt text](OEM.png)
 
 
 
@@ -22,7 +22,7 @@ Auditing provides accountability by logging every attempted action (allowed or d
 
 ## Reference & Audit Tables
 
-```
+```sql
 -- Holiday reference table for the upcoming month
 CREATE TABLE Holiday_Ref (
   holiday_date DATE PRIMARY KEY,
