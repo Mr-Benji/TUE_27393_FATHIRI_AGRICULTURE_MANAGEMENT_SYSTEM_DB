@@ -42,7 +42,7 @@ CREATE TABLE Audit_Log (
 ```
 ### Populate Holiday_Ref for the next month in advance:
 
-```
+```sql
 INSERT INTO Holiday_Ref VALUES (DATE '2025-06-21', 'National Day');
 INSERT INTO Holiday_Ref VALUES (DATE '2025-06-30', 'Harvest Festival');
 COMMIT;
@@ -51,7 +51,7 @@ COMMIT;
 ##  Trigger Implementations
   ### Package & Utilities
 
-  ```
+  ```sql
 CREATE OR REPLACE PACKAGE audit_pkg IS
   PROCEDURE log_action(
     p_user      IN VARCHAR2,
@@ -103,7 +103,7 @@ END audit_pkg;
 ### Simple BEFORE DML Trigger
 Applies to all your key tables (Farmer, Asset, Season, etc.). Example on Farmer:
 
-```
+```sql
 CREATE OR REPLACE TRIGGER trg_restrict_farmer_dml
   BEFORE INSERT OR UPDATE OR DELETE ON Farmer
   FOR EACH ROW
@@ -126,7 +126,7 @@ END;
 ###  Compound Trigger for Bulk Operations
 Ensures transactional consistency and single logging per statement:
 
-```
+```sql
 CREATE OR REPLACE TRIGGER trg_bulk_restrict
   FOR INSERT OR UPDATE OR DELETE ON Asset
   COMPOUND TRIGGER
