@@ -2,7 +2,7 @@
 
 ## Phase IV: PDB CREATION
 
-![Alt text](C:\Users\fathi\OneDrive\Desktop\plsql\TUE_27393_FATHIRI_AGRICULTURE_MANAGEMENT_SYSTEM_DB\Phase IV\OEM.png)
+![Alt text](OEM.png)
 
 
 
