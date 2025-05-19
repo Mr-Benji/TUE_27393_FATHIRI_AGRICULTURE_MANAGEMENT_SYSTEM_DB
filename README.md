@@ -158,6 +158,110 @@ INSERT INTO Report (season_id, coop_id, report_text, report_date)
   commit
 
 ```
+
+## Phase VI:
+  ### DDL&DML 
+```sql
+
+INSERT INTO Farmer (name, contact)
+VALUES ('Charlie P.', 'charlie@gmail.com');
+
+
+UPDATE Asset
+SET subtype = 'Maize Local'
+WHERE asset_id = 1;
+
+
+DELETE FROM Report
+WHERE report_id = 2;
+
+
+CREATE TABLE TestTable (
+  id           NUMBER PRIMARY KEY,
+  created_date DATE DEFAULT SYSDATE
+);
+
+ALTER TABLE TestTable
+ADD (description VARCHAR2(200));
+
+
+DROP TABLE TestTable;
+
+commit;
+
+```
+### PACKAGES
+
+```sql
+CREATE OR REPLACE PACKAGE farm_pkg IS
+  PROCEDURE get_farm_activities(p_farmer_id IN NUMBER);
+  FUNCTION  get_total_yield(p_farmer_id IN NUMBER) RETURN NUMBER;
+END farm_pkg;
+/
+CREATE OR REPLACE PACKAGE BODY farm_pkg IS
+
+  PROCEDURE get_farm_activities(p_farmer_id IN NUMBER) IS
+  BEGIN
+    get_farm_activities(p_farmer_id);  -- calls the standalone proc
+  END;
+
+  FUNCTION get_total_yield(p_farmer_id IN NUMBER) RETURN NUMBER IS
+    v_total NUMBER;
+  BEGIN
+    SELECT SUM(o.actual_yield)
+      INTO v_total
+      FROM Outcome o
+      JOIN Season  s ON o.season_id = s.season_id
+     WHERE s.asset_id IN (
+       SELECT asset_id FROM Asset WHERE farmer_id = p_farmer_id
+     );
+    RETURN NVL(v_total, 0);
+  EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      RETURN 0;
+    WHEN OTHERS THEN
+      RETURN -1;
+  END get_total_yield;
+
+END farm_pkg;
+/
+
+
+````
+
+### Procedures&Fuctions
+
+```sql
+
+CREATE OR REPLACE PROCEDURE get_farm_activities (
+  p_farmer_id IN NUMBER
+) IS
+  CURSOR c_acts IS
+    SELECT a.activity_type,
+           a.amount,
+           a.activity_date
+      FROM Activity a
+      JOIN Season  s ON a.season_id = s.season_id
+     WHERE s.asset_id IN (
+       SELECT asset_id FROM Asset WHERE farmer_id = p_farmer_id
+     );
+BEGIN
+  FOR rec IN c_acts LOOP
+    DBMS_OUTPUT.PUT_LINE(
+      rec.activity_type || ': ' ||
+      rec.amount        || ' on ' ||
+      TO_CHAR(rec.activity_date, 'YYYY-MM-DD')
+    );
+  END LOOP;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('No activities for farmer ' || p_farmer_id);
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END get_farm_activities;
+/
+
+```
 ## Phase VII: Advanced Database Programming and Auditing
 
 1. Problem Statement
