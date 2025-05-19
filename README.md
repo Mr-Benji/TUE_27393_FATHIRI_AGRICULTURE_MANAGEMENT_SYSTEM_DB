@@ -2,7 +2,7 @@
 
 ## Phase IV: PDB CREATION
 
-![Alt text](images/example.png)
+![Alt text](Phase/IV/CONNECTING/TO/OEM.png)
 
 
 
