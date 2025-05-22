@@ -1,9 +1,9 @@
-PROBLEM STATEMENT:
-Small farmers here still write everything down by hand or use different apps to track planting, fertilizer and feed use, health tasks like vaccinations or pest control, and their harvests. This makes it hard for them to know exactly how much input to use, slows down advice from cooperatives, and leaves regional managers guessing how to distribute resources or run training. Our Agricultural Management System brings it all together in one easy-to-use platform: farmers can register, plan seasons, log activities, and record harvests; cooperatives get instant, consistent reports and a way to send feedback; and administrators see clear dashboards and trends to decide where to send supplies and schedule workshops. With just a few clicks, everyone has the information they need to work smarter and faster.
-
 # TUE_27393_FATHIRI_AGRICULTURE_MANAGEMENT_SYSTEM_DB
 
 ## Phase IV: PDB CREATION AND CONNECTING WITH ORACLE ENTEPRISE MANAGER
+
+PROBLEM STATEMENT:
+Small farmers here still write everything down by hand or use different apps to track planting, fertilizer and feed use, health tasks like vaccinations or pest control, and their harvests. This makes it hard for them to know exactly how much input to use, slows down advice from cooperatives, and leaves regional managers guessing how to distribute resources or run training. Our Agricultural Management System brings it all together in one easy-to-use platform: farmers can register, plan seasons, log activities, and record harvests; cooperatives get instant, consistent reports and a way to send feedback; and administrators see clear dashboards and trends to decide where to send supplies and schedule workshops. With just a few clicks, everyone has the information they need to work smarter and faster.
 
 ### CREATING PLUGABLLE DATABASE
 ![alt text](CREATE.png)
@@ -205,7 +205,7 @@ CREATE OR REPLACE PACKAGE BODY farm_pkg IS
 
   PROCEDURE get_farm_activities(p_farmer_id IN NUMBER) IS
   BEGIN
-    get_farm_activities(p_farmer_id);  -- calls the standalone proc
+    get_farm_activities(p_farmer_id);  
   END;
 
   FUNCTION get_total_yield(p_farmer_id IN NUMBER) RETURN NUMBER IS
@@ -282,13 +282,13 @@ Auditing provides accountability by logging every attempted action (allowed or d
 ## Reference & Audit Tables
 
 ```sql
--- Holiday reference table for the upcoming month
+
 CREATE TABLE Holiday_Ref (
   holiday_date DATE PRIMARY KEY,
   description  VARCHAR2(100)
 );
 
--- Audit log table
+
 CREATE TABLE Audit_Log (
   log_id      NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   username    VARCHAR2(30) NOT NULL,
@@ -347,7 +347,7 @@ CREATE OR REPLACE PACKAGE BODY audit_pkg IS
     ELSE
       RETURN TRUE;
     END IF;
-    -- Holiday check
+   
     SELECT COUNT(*) INTO v_is_holiday 
       FROM Holiday_Ref
      WHERE holiday_date = v_today;
