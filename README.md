@@ -340,7 +340,7 @@ CREATE OR REPLACE PACKAGE BODY audit_pkg IS
     v_today      DATE   := TRUNC(SYSDATE);
     v_dow        NUMBER := TO_CHAR(v_today, 'D');
     v_is_holiday NUMBER;
-  BEGIN-- 1 = Sunday, 7 = Saturday on some NLS; adjust if needed for your ORACLE_NLS_TERRITORY
+  BEGIN
     IF v_dow BETWEEN 2 AND 6 THEN
      
       NULL; 
