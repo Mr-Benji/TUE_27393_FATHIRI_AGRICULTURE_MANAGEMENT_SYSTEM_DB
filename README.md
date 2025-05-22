@@ -1,3 +1,6 @@
+PROBLEM STATEMENT:
+Small farmers here still write everything down by hand or use different apps to track planting, fertilizer and feed use, health tasks like vaccinations or pest control, and their harvests. This makes it hard for them to know exactly how much input to use, slows down advice from cooperatives, and leaves regional managers guessing how to distribute resources or run training. Our Agricultural Management System brings it all together in one easy-to-use platform: farmers can register, plan seasons, log activities, and record harvests; cooperatives get instant, consistent reports and a way to send feedback; and administrators see clear dashboards and trends to decide where to send supplies and schedule workshops. With just a few clicks, everyone has the information they need to work smarter and faster.
+
 # TUE_27393_FATHIRI_AGRICULTURE_MANAGEMENT_SYSTEM_DB
 
 ## Phase IV: PDB CREATION AND CONNECTING WITH ORACLE ENTEPRISE MANAGER
@@ -337,8 +340,7 @@ CREATE OR REPLACE PACKAGE BODY audit_pkg IS
     v_today      DATE   := TRUNC(SYSDATE);
     v_dow        NUMBER := TO_CHAR(v_today, 'D');
     v_is_holiday NUMBER;
-  BEGIN
-    -- 1 = Sunday, 7 = Saturday on some NLS; adjust if needed for your ORACLE_NLS_TERRITORY
+  BEGIN-- 1 = Sunday, 7 = Saturday on some NLS; adjust if needed for your ORACLE_NLS_TERRITORY
     IF v_dow BETWEEN 2 AND 6 THEN
       -- Weekday check
       NULL; 
