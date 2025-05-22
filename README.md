@@ -294,8 +294,8 @@ CREATE TABLE Audit_Log (
   username    VARCHAR2(30) NOT NULL,
   action_time TIMESTAMP   DEFAULT SYSTIMESTAMP,
   object_name VARCHAR2(30) NOT NULL,
-  operation   VARCHAR2(10) NOT NULL,  -- INSERT, UPDATE, DELETE
-  status      VARCHAR2(10) NOT NULL   -- ALLOWED or DENIED
+  operation   VARCHAR2(10) NOT NULL,  
+  status      VARCHAR2(10) NOT NULL  
 );
 
 ```
@@ -342,7 +342,7 @@ CREATE OR REPLACE PACKAGE BODY audit_pkg IS
     v_is_holiday NUMBER;
   BEGIN-- 1 = Sunday, 7 = Saturday on some NLS; adjust if needed for your ORACLE_NLS_TERRITORY
     IF v_dow BETWEEN 2 AND 6 THEN
-      -- Weekday check
+     
       NULL; 
     ELSE
       RETURN TRUE;
@@ -375,7 +375,7 @@ BEGIN
     );
     RAISE_APPLICATION_ERROR(-20001, 'DML on Farmer is restricted today.');
   ELSE
-    -- Allow and log
+   
     audit_pkg.log_action(USER, 'Farmer', ORA_SYSEVENT, 'ALLOWED');
   END IF;
 END;
