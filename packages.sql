@@ -7,7 +7,7 @@ CREATE OR REPLACE PACKAGE BODY farm_pkg IS
 
   PROCEDURE get_farm_activities(p_farmer_id IN NUMBER) IS
   BEGIN
-    get_farm_activities(p_farmer_id);  -- calls the standalone proc
+    get_farm_activities(p_farmer_id); 
   END;
 
   FUNCTION get_total_yield(p_farmer_id IN NUMBER) RETURN NUMBER IS
