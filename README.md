@@ -5,10 +5,13 @@
 ##### DATE: TUESDAY (6PM)
 # TUE_27393_FATHIRI_AGRICULTURE_MANAGEMENT_SYSTEM_DB
 
-## Phase IV: PDB CREATION AND CONNECTING WITH ORACLE ENTEPRISE MANAGER
 
-PROBLEM STATEMENT:
+
+## PROBLEM STATEMENT:
+
 Small farmers here still write everything down by hand or use different apps to track planting, fertilizer and feed use, health tasks like vaccinations or pest control, and their harvests. This makes it hard for them to know exactly how much input to use, slows down advice from cooperatives, and leaves regional managers guessing how to distribute resources or run training. Our Agricultural Management System brings it all together in one easy-to-use platform: farmers can register, plan seasons, log activities, and record harvests; cooperatives get instant, consistent reports and a way to send feedback; and administrators see clear dashboards and trends to decide where to send supplies and schedule workshops. With just a few clicks, everyone has the information they need to work smarter and faster.
+
+## Phase IV: PDB CREATION AND CONNECTING WITH ORACLE ENTEPRISE MANAGER
 
 ### CREATING PLUGABLLE DATABASE
 ![alt text](CREATE.png)
@@ -92,7 +95,10 @@ CREATE TABLE Report (
 
 commit;
 
+
 ```
+![Screenshot 2025-05-17 192932](https://github.com/user-attachments/assets/35c31850-e263-4528-8d79-65f12fa00c58)
+
 ###  INSERTING DATA INTO TABLES 
 
 ```sql
